@@ -1,19 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv=require('dotenv')
 const authRoutes = require('./routes/authRoutes');
+const meetingroomRoutes = require('./routes/meetingRoomRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
+
+
 // Importez d'autres routes si nécessaire
+dotenv.config()
+const MONGODB_URI=process.env.MONGODB_URI
+const PORT =process.env.PORT 
 
 const app = express();
 
 app.use(express.json());
 app.use('/auth', authRoutes);
-// Utilisez d'autres routes ici
+app.use('/meetingroom', meetingroomRoutes);
+app.use('/reservation', reservationRoutes);
 
-mongoose.connect('mongodb://localhost/meeting_room_db', { useNewUrlParser: true, useUnifiedTopology: true })
+// Utilisez d'autres routes ici
+mongoose.connect(MONGODB_URI)
     .then(() => {
         console.log('Connected to MongoDB');
-        app.listen(3000, () => {
-            console.log('Server running on port 3000');
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
         });
     })
     .catch(err => console.error('Error connecting to MongoDB:', err));
+
