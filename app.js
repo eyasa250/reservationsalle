@@ -5,12 +5,12 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const meetingroomRoutes = require('./routes/meetingRoomRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
-const connectDB = require('../reservationsalle/Service/db');
+//const connectDB = require('../reservationsalle/Service/db');
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT ;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 // Middleware
@@ -23,16 +23,15 @@ app.use('/meetingroom', meetingroomRoutes);
 app.use('/reservation', reservationRoutes);
 
 // Connect to MongoDB
-connectDB()
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
-  });
+mongoose.connect(MONGODB_URI)
+    .then(() => {
+        console.log('Connected to MongoDB');
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    })
+    .catch(err => console.error('Error connecting to MongoDB:', err));
+
 
 // Global error handler
 app.use((err, req, res, next) => {
