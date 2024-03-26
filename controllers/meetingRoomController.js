@@ -1,3 +1,4 @@
+
 const MeetingRoom = require('../models/meetingRoom');
 const defaultMeetingRooms = require('../defaultMeetingRooms');
 
