@@ -1,3 +1,4 @@
+
 const Reservation = require('../models/reservation');
 const mongoose = require('mongoose');
 
@@ -50,4 +51,5 @@ exports.createReservation = async (req, res) => {
         res.status(500).json({ error: 'Une erreur s\'est produite lors de la création de la réservation', message: error.message });
     }
 };
+
 
