@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     // Autres champs et méthodes si nécessaire
 });
 
-<<<<<<< HEAD
+
 userSchema.pre('save', async function(next){
     const user = this;
     if(user.isModified('password')){
