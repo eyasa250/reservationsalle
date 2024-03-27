@@ -7,6 +7,5 @@ const meetingRoomSchema = new mongoose.Schema({
     // Autres champs et méthodes si nécessaire
 });
 
-
 module.exports = mongoose.model('MeetingRoom', meetingRoomSchema);
 
