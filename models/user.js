@@ -28,7 +28,7 @@ userSchema.pre('save', async function(next){
     const user = this;
     if(user.isModified('password')){
         user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-    }
+    }   
     next();
 })
 // Fonction pour vérifier si l'utilisateur est un administrateur
