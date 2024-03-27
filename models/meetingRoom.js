@@ -8,3 +8,4 @@ const meetingRoomSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('MeetingRoom', meetingRoomSchema);
+
